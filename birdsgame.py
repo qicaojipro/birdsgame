@@ -2,6 +2,7 @@ import pygame
 import random
 from time import sleep
 pygame.init()
+pygame.mixer.init()
 ##########定义##########
 frame=0
 map_kuan=284
@@ -18,6 +19,7 @@ bird_wing_up=bird_wing_up2=pygame.image.load("something/bird_wing_up.png ")
 bird_wing_down=bird_wing_down2=pygame.image.load("something/bird_wing_down.png ")
 guandao=pygame.image.load("something/pipe_body.png")
 guandao2=pygame.image.load("something/pipe_end.png")
+sound=pygame.mixer.Sound("something/birds.wav")
 ############函数############
 def draw_pipes():
     for w in range(len(pipes)):
@@ -42,6 +44,8 @@ def game_while():
             pipes.pop(0)
         for event in pygame.event.get():
             if event.type==pygame.KEYDOWN:
+                sound.set_volume(0.5)
+                sound.play()
                 bird[1]-=30
                 V=0
             if event.type==pygame.QUIT:
